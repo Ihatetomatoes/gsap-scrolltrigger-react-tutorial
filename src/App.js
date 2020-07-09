@@ -3,41 +3,25 @@ import { gsap } from "gsap";
 import logo from './images/img_react-gsap.png';
 import './App.css';
 
-import image1 from './images/background-01.jpg';
-import image2 from './images/background-02.jpg';
-
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-const images = [
+const sections = [
   {
-    src: image1, 
-    alt: 'Some nice description'
+    title: 'Architecto aliquam', 
+    subtitle: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, ea.'
   },
   {
-    src: image2, 
-    alt: 'Another nice description'
+    title: 'Ceritatis placeat', 
+    subtitle: 'Dignissimos placeat cupiditate perferendis eaque praesentium similique officia dolore?'
   },
   {
-    src: image1, 
-    alt: 'lorem ipsum 1'
-  },
-  {
-    src: image2, 
-    alt: 'lorem ipsum 2'
-  },
-  {
-    src: image1, 
-    alt: 'lorem ipsum 3'
-  },
-  {
-    src: image2, 
-    alt: 'lorem ipsum 4'
+    title: 'Vitae voluptates', 
+    subtitle: 'In ullam et nulla repudiandae praesentium, laboriosam quas tempore fuga asperiores eveniet amet.'
   }
 ];
 
 const App = () => {
-
 
   const [background, setBackground] = useState('#262626');
   const headerRef = useRef(null);
@@ -73,7 +57,7 @@ const App = () => {
         autoAlpha: 1,
         ease: 'none',
         scrollTrigger: {
-          id: `image-${index+1}`,
+          id: `section-${index+1}`,
           trigger: el,
           start: 'top center+=100'
         }
@@ -95,12 +79,17 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
         <button onClick={() => toggleBackground()}>Change background</button>
         <p>
-          Scroll down to see images being revealed by ScrollTrigger.
+          Scroll down to see sections being revealed by ScrollTrigger.
         </p>
       </header>
       <main className="App-main">
         {
-          images.map(({src, alt}) => <img key={alt} alt={alt} ref={addToRefs} src={src} />)
+          sections.map(({title, subtitle}) => (
+            <div className="App-section" key={title} ref={addToRefs}>
+              <h2>{title}</h2>
+              <p>{subtitle}</p>
+            </div>
+          ))
         }
       </main>
     </div>
