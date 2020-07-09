@@ -5,7 +5,7 @@
 Learn how to use [GreenSock](http://www.greensock.com/?ref=15167) and [ScrollTrigger](https://greensock.com/scrolltrigger/?ref=15167) in React.
 
 ## Related Tutorial
-[How To Make Page Transitions with Barba.js and GreenSock - Part 2](https://ihatetomatoes.net/react-and-greensock-tutorial-for-beginners/)
+[React and Greensock Tutorial for Beginners](https://ihatetomatoes.net/react-and-greensock-tutorial-for-beginners/)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
