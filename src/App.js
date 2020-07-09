@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import logo from './images/img_react-and-scrolltrigger.png';
+import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from "gsap";
+import logo from './images/img_react-gsap.png';
 import './App.css';
 
 import image1 from './images/background-01.jpg';
@@ -38,11 +38,32 @@ const images = [
 
 const App = () => {
 
+
+  const [background, setBackground] = useState('#262626');
+  const headerRef = useRef(null);
+
   const revealRefs = useRef([]);
   revealRefs.current = [];
 
+  const toggleBackground = () => {
+    const color = background !== '#262626' ? '#262626' : '#1b4943';
+    setBackground(color);
+  }
+
+  useEffect(() => {
+
+    gsap.to(headerRef.current, { backgroundColor: background, duration: 1,  ease: 'none' });
+
+  }, [background]);
+
   useEffect(() => {
     
+    gsap.from(headerRef.current, {
+      autoAlpha: 0, 
+      ease: 'none',
+      delay: 1
+    });
+
     revealRefs.current.forEach((el, index) => {
         
       gsap.fromTo(el, {
@@ -70,8 +91,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header ref={headerRef} className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <button onClick={() => toggleBackground()}>Change background</button>
         <p>
           Scroll down to see images being revealed by ScrollTrigger.
         </p>
